@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /* 
 Your game is going to play against the computer, so begin with a function called computerPlay that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. We’ll use this function in the game to make the computer’s play.
@@ -15,7 +15,7 @@ Pseudo Code:
 */
 
 const computerPlay = function () {
-  const choices = ['rock', 'paper', 'scissors'];
+  const choices = ["rock", "paper", "scissors"];
   //This chooses a random item from the array
   const random = Math.floor(Math.random() * choices.length);
   //This returns a random item from the array
@@ -23,71 +23,51 @@ const computerPlay = function () {
 };
 computerPlay();
 
-// const playerSelection = function (input) {
-//   input = prompt('input: ');
-//   return input;
-// };
+// This code works but, when it is not lowercase or the answer is null or "" it says playerSelection is not a function
 function playerSelection(input) {
-  input = prompt('input: ');
+  input = prompt("input: ");
   return input;
 }
 
+//refactor this when we get the chance
 function playRound(playerSelection, computerSelection) {
-  if (
-    playerSelection.toLowerCase() === 'rock' &&
-    computerSelection == 'scissors'
-  ) {
-    return `You Win! Rock beats Scissors!`;
-  } else if (
-    playerSelection.toLowerCase() === 'scissors' &&
-    computerSelection == 'rock'
-  ) {
-    return `You Lose! Rock beats Scissors!`;
-  } else if (
-    playerSelection.toLowerCase() === 'paper' &&
-    computerSelection == 'rock'
-  ) {
-    return `You Win! Paper beats Rock!`;
-  } else if (
-    playerSelection.toLowerCase() === 'rock' &&
-    computerSelection == 'paper'
-  ) {
-    return `You Lose! Paper beats Rock!`;
-  } else if (
-    playerSelection.toLowerCase() === 'scissors' &&
-    computerSelection == 'paper'
-  ) {
-    return `You Win! Scissors beats Paper!`;
-  } else if (
-    playerSelection.toLowerCase() === 'paper' &&
-    computerSelection == 'scissors'
-  ) {
-    return `You Lose! Scissors beats Paper!`;
+  if (playerSelection === null || playerSelection === "") {
+    alert(`Please enter an answer.`);
+    return playerSelection;
+  }
+  playerSelection = playerSelection.toLowerCase();
+  if (playerSelection == "rock" && computerSelection == "scissors") {
+    return `You Win! Rock crushes Scissors!`;
+  } else if (playerSelection == "scissors" && computerSelection == "rock") {
+    return `You Lose! Rock crushes Scissors!`;
+  } else if (playerSelection == "paper" && computerSelection == "rock") {
+    return `You Win! Paper covers Rock!`;
+  } else if (playerSelection == "rock" && computerSelection == "paper") {
+    return `You Lose! Paper covers Rock!`;
+  } else if (playerSelection == "scissors" && computerSelection == "paper") {
+    return `You Win! Scissors cuts Paper!`;
+  } else if (playerSelection == "paper" && computerSelection == "scissors") {
+    return `You Lose! Scissors cuts Paper!`;
   }
   // If the user and computer select the same choices
-  if (
-    playerSelection.toLowerCase() === 'scissors' &&
-    computerSelection == 'scissors'
-  ) {
-    return `It's a tie! Scissors cant break Scissors!`;
-  } else if (
-    playerSelection.toLowerCase() === 'rock' &&
-    computerSelection == 'rock'
-  ) {
-    return `It's a tie! Rock can't break Rock!`;
-  } else if (
-    playerSelection.toLowerCase() === 'paper' &&
-    computerSelection == 'paper'
-  ) {
-    return `It's a tie! Paper can't break Paper!`;
-  }
-  // If user doesn't enter in the choice or cancels
-  if (playerSelection === undefined || 'cancel') {
-    return `Please enter valid entry. Try again!`;
+  if (playerSelection == "scissors" && computerSelection == "scissors") {
+    return `It's a tie! Scissors cant beat Scissors!`;
+  } else if (playerSelection == "rock" && computerSelection == "rock") {
+    return `It's a tie! Rock can't beat Rock!`;
+  } else if (playerSelection == "paper" && computerSelection == "paper") {
+    return `It's a tie! Paper can't beat Paper!`;
   }
 
   //   computerPlay();
   playerSelection();
 }
 
-console.log(playRound(playerSelection(), computerPlay()));
+//figure out how to loop this 5 times when we refactor this
+function game() {
+  console.log(playRound(playerSelection(), computerPlay()));
+  console.log(playRound(playerSelection(), computerPlay()));
+  console.log(playRound(playerSelection(), computerPlay()));
+  console.log(playRound(playerSelection(), computerPlay()));
+  console.log(playRound(playerSelection(), computerPlay()));
+}
+game();
