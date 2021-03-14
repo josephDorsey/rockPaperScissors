@@ -83,3 +83,12 @@ EXAMPLE 3: game()
 - create a function called game()
 - save previous function inside this one
 - make it loop 5 times
+
+# REFACTOR TIME!
+
+So in this project we are going to reform this rock, paper, scissors project. Previously we had our code logging our answers to the console. Now we want to have three buttons that have the option of rock paper or scissors for the player. And the same for the computer as well.
+
+## Let's start with making the buttons
+
+1.  we want an again button at the top to refresh the page when we are all done
+2.  we want a paragraph in the top right corner that says (Choose rock, paper, or scissors)

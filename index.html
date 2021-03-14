@@ -4,13 +4,66 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="grid.css" />
+    <title>Rock, Paper, Scissors</title>
   </head>
   <header>
+    <p class="label-highscore">
+      🥇 Highscore: <span class="highscore">0</span>
+    </p>
     <div class="row">
-      <h1>This is our Rock Paper Scissors Game</h1>
+      <h1>Rock, Paper, Scissors!</h1>
+      <button class="btn again">Again!</button>
+      <button class="btn rules">Rules!</button>
     </div>
+    <div class="modal hidden">
+      <button class="close-modal">&times;</button>
+      <h1>Here are the rules:</h1>
+      <p>
+        You and the computer will both pick between rock, paper, or scissors.
+        The computers decision is randomly chosen. There will be 5 rounds.
+      </p>
+      <ul>
+        <li>Rock wins over scissors (because rock smashes scissors)</li>
+        <li>Scissors wins over paper (because scissors cut paper)</li>
+        <li>Paper wins over rock (because paper covers rock)</li>
+      </ul>
+    </div>
+    <div class="overlay hidden"></div>
+    <div class="modal results hidden">
+      <button class="close-results">&times;</button>
+      <h1>Here are the results:</h1>
+      <div id="resultsText">
+      </div>
+    </div>
+    </div>
+    <div class="overlay hidden"></div>
   </header>
+  <main>
+    <section class="top">
+      <div class="round">Round: <span class="turn">1</span></div>
+      <div class="number">Player: <span class="playerscore">0</span></div>
+      <div class="number">Computer: <span class="compscore">0</span></div>
+      <!-- <p class="label-highscore">
+        🥇 Highscore: <span class="highscore">0</span>
+      </p> -->
+    </section>
+    <div class="row">
+      <section class="left">
+        <div class="player">Player</div>
+        <p class="message">Choose your weapon!</p>
+        <button class="btn player-btn rock">Rock</button>
+        <button class="btn player-btn paper">Paper</button>
+        <button class="btn player-btn scissors">Scissors</button>
+      </section>
+      <section class="right">
+        <div class="computer">Computer</div>
+        <p class="comp-message"></p>
+        <div id="printText"></div>
+      </section>
+    </div>
+  </main>
   <body>
     <script src="/rockpaperscissors.js"></script>
   </body>
