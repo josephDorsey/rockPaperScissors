@@ -10,6 +10,11 @@ const overlay = document.querySelector(".overlay");
 const btnCloseRules = document.querySelector(".close-modal");
 const btnShowRules = document.querySelector(".rules");
 
+const results = document.querySelector(".results");
+const btnCloseResults = document.querySelector(".close-results");
+const resultsOverlay = document.querySelector(".results-overlay");
+const resultsHidden = document.querySelector(".results-hidden");
+
 const showRules = function () {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
@@ -20,9 +25,16 @@ const hideRules = function () {
   overlay.classList.add("hidden");
 };
 
+const hideResults = function () {
+  resultsOverlay.classList.add("results-hidden");
+  results.classList.add("results-hidden");
+};
+
+btnCloseResults.addEventListener("click", hideResults);
 btnShowRules.addEventListener("click", showRules);
 btnCloseRules.addEventListener("click", hideRules);
 overlay.addEventListener("click", hideRules);
+resultsOverlay.addEventListener("click", hideResults);
 
 // rock, paper, scissors btn
 let playerPoints = 0;
@@ -33,7 +45,6 @@ let turn = 1;
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
-const results = document.querySelector(".results");
 
 const computerChoice = function () {
   const choices = ["Rock", "Paper", "Scissors"];
@@ -138,23 +149,30 @@ const rockBtn = function () {
     winner(`GAME OVER! YOU WIN ${playerPoints} - ${computerPoints}`);
     printText(`GAME OVER! YOU WIN ${playerPoints} - ${computerPoints}`);
     bodyStyle("#2ecc71");
-    results.classList.remove("hidden");
+    results.classList.remove("results-hidden");
+    resultsOverlay.classList.remove("results-hidden");
     turn--;
     roundTurn(turn);
   } else if (turn === 6 && computerPoints > playerPoints) {
     bodyStyle("#c0392b");
     winner(`GAME OVER! YOU LOSE ${playerPoints} - ${computerPoints}`);
     printText(`GAME OVER! YOU LOSE ${playerPoints} - ${computerPoints}`);
-    results.classList.remove("hidden");
+    results.classList.remove("results-hidden");
+    resultsOverlay.classList.remove("results-hidden");
     turn--;
     roundTurn(turn);
   } else if (turn === 6 && playerPoints === computerPoints) {
     bodyStyle("#fff");
     winner(`GAME OVER! IT'S A TIE ${playerPoints} - ${computerPoints}`);
     printText(`GAME OVER! IT'S A TIE ${playerPoints} - ${computerPoints}`);
-    results.classList.remove("hidden");
+    results.classList.remove("results-hidden");
+    resultsOverlay.classList.remove("results-hidden");
     turn--;
     roundTurn(turn);
+  }
+  if (playerPoints > highscore) {
+    highscore = playerPoints;
+    document.querySelector(".highscore").textContent = highscore;
   }
 };
 rock.addEventListener("click", rockBtn);
@@ -216,21 +234,24 @@ const paperBtn = function () {
     winner(`GAME OVER! YOU WIN ${playerPoints} - ${computerPoints}`);
     printText(`GAME OVER! YOU WIN ${playerPoints} - ${computerPoints}`);
     bodyStyle("#2ecc71");
-    results.classList.remove("hidden");
+    results.classList.remove("results-hidden");
+    resultsOverlay.classList.remove("results-hidden");
     turn--;
     roundTurn(turn);
   } else if (turn === 6 && computerPoints > playerPoints) {
     bodyStyle("#c0392b");
     winner(`GAME OVER! YOU LOSE ${playerPoints} - ${computerPoints}`);
     printText(`GAME OVER! YOU LOSE ${playerPoints} - ${computerPoints}`);
-    results.classList.remove("hidden");
+    results.classList.remove("results-hidden");
+    resultsOverlay.classList.remove("results-hidden");
     turn--;
     roundTurn(turn);
   } else if (turn === 6 && playerPoints === computerPoints) {
     bodyStyle("#fff");
     winner(`GAME OVER! IT'S A TIE ${playerPoints} - ${computerPoints}`);
     printText(`GAME OVER! IT'S A TIE ${playerPoints} - ${computerPoints}`);
-    results.classList.remove("hidden");
+    results.classList.remove("results-hidden");
+    resultsOverlay.classList.remove("results-hidden");
     turn--;
     roundTurn(turn);
   }
@@ -300,23 +321,30 @@ const scissorsBtn = function () {
     winner(`GAME OVER! YOU WIN ${playerPoints} - ${computerPoints}`);
     printText(`GAME OVER! YOU WIN ${playerPoints} - ${computerPoints}`);
     bodyStyle("#2ecc71");
-    results.classList.remove("hidden");
+    results.classList.remove("results-hidden");
+    resultsOverlay.classList.remove("results-hidden");
     turn--;
     roundTurn(turn);
   } else if (turn === 6 && computerPoints > playerPoints) {
     bodyStyle("#c0392b");
     winner(`GAME OVER! YOU LOSE ${playerPoints} - ${computerPoints}`);
     printText(`GAME OVER! YOU LOSE ${playerPoints} - ${computerPoints}`);
-    results.classList.remove("hidden");
+    results.classList.remove("results-hidden");
+    resultsOverlay.classList.remove("results-hidden");
     turn--;
     roundTurn(turn);
   } else if (turn === 6 && playerPoints === computerPoints) {
     bodyStyle("#fff");
     winner(`GAME OVER! IT'S A TIE ${playerPoints} - ${computerPoints}`);
     printText(`GAME OVER! IT'S A TIE ${playerPoints} - ${computerPoints}`);
-    results.classList.remove("hidden");
+    results.classList.remove("results-hidden");
+    resultsOverlay.classList.remove("results-hidden");
     turn--;
     roundTurn(turn);
+  }
+  if (playerPoints > highscore) {
+    highscore = playerPoints;
+    document.querySelector(".highscore").textContent = highscore;
   }
 };
 
@@ -334,6 +362,8 @@ document.querySelector(".again").addEventListener("click", function () {
   computerScore(computerPoints);
   roundTurn(turn);
   bodyStyle("#fff");
-  results.classList.add("hidden");
-  winner("");
+  let removePrintText = document.getElementById("printText");
+  let removeResultsText = document.getElementById("resultsText");
+  removeResultsText.innerHTML = "";
+  removePrintText.innerHTML = "";
 });

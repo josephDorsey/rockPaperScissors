@@ -1,6 +1,7 @@
 /* Classes to make modal work */
 
-.hidden {
+.hidden,
+.results-hidden {
   display: none;
 }
 
@@ -22,7 +23,8 @@
   z-index: 10;
 }
 
-.overlay {
+.overlay,
+.results-overlay {
   position: absolute;
   top: 0;
   left: 0;
