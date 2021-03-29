@@ -19,7 +19,7 @@ body {
 
   /* background-image: linear-gradient(to top left, #293787 0%, #14e673 100%); */
   /* background-image: linear-gradient(to top left, #293787 0%, #14e673 100%); */
-  background-image: url(/resources/img/crumpledpaper.jpg);
+  background-image: url(resources/img/crumpledpaper.jpg);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
